@@ -1,5 +1,4 @@
 package cbu.valyuta.service.mapper;
-
 import cbu.valyuta.entity.Currency;
 import cbu.valyuta.dto.CurrencyDto;
 import org.mapstruct.Mapper;
