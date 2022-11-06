@@ -1,5 +1,6 @@
 package cbu.valyuta.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -10,6 +11,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@JsonIgnoreProperties(value = "id", allowGetters = true)
 public class CurrencyDto {
     public Integer id;
     @JsonProperty("Code")
@@ -27,7 +29,7 @@ public class CurrencyDto {
     @JsonProperty("Nominal")
     public String nominal;
     @JsonProperty("Rate")
-    public String rate;
+    public Double rate;
     @JsonProperty("Diff")
     public String diff;
     @JsonProperty("Date")

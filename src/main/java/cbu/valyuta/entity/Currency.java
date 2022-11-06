@@ -3,8 +3,10 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Builder
@@ -28,7 +30,7 @@ public class Currency {
     @Column(name = "ccy_nm_en")
     public String ccyNm_EN;
     public String nominal;
-    public String rate;
+    public Double rate;
     public String diff;
-    public String date;
+    public Date date;
 }

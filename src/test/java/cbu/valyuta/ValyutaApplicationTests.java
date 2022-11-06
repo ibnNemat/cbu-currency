@@ -7,7 +7,10 @@ import cbu.valyuta.service.CurrencyService;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.*;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
@@ -59,11 +62,11 @@ class ValyutaApplicationTests {
 		System.out.println("Valyuta by CCY code: " + responseDto.getResponseData());
 	}
 
-	@Test
+	@ParameterizedTest
+	@ValueSource(strings = {"USD", "EUR", "RUB", "KZT"})
 	@Order(4)
 	@DisplayName("Integration test")
-	void checkXmlCurrencyByCode() throws Exception {
-		String ccy = "EUR";
+	void checkXmlCurrencyByCode(String ccy) throws Exception {
 		RequestBuilder requestBuilder = MockMvcRequestBuilders.get("/valyuta/by-code/"+ccy)
 				.contentType("application/json");
 //				.content(ccy);
@@ -71,7 +74,7 @@ class ValyutaApplicationTests {
 		String response = mockMvc.perform(requestBuilder)
 				.andDo(print())
 				.andExpect(status().isOk())
-				.andExpect(content().contentType(MediaType.APPLICATION_XML))
+				.andExpect(content().contentType(MediaType.APPLICATION_JSON))
 				.andReturn()
 				.getResponse()
 				.getContentAsString();
