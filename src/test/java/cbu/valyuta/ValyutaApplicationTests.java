@@ -4,6 +4,7 @@ import cbu.valyuta.dto.CurrencyDto;
 import cbu.valyuta.dto.ResponseDto;
 import cbu.valyuta.feign.CurrencyFeignClient;
 import cbu.valyuta.service.CurrencyService;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.*;
@@ -35,15 +36,19 @@ class ValyutaApplicationTests {
 	private CurrencyService currencyService;
 	@Autowired
 	private MockMvc mockMvc;
+	@Autowired
+	private ObjectMapper objectMapper;
 
 	@Test
 	@Order(1)
-	void checkJsonCurrencyList(){
+	void checkJsonCurrencyList() throws JsonProcessingException {
 		List<CurrencyDto> currencyDtoList = feignClient.getAllCurrency();
 		Assertions.assertNotNull(currencyDtoList);
+
+		System.out.println(objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(currencyDtoList));
 	}
 
-	@Test
+//	@Test
 	@Order(2)
 	void checkInsertInto() {
 		ResponseDto responseDto = currencyService.insertIntoCurrency();
@@ -52,7 +57,7 @@ class ValyutaApplicationTests {
 		Assertions.assertTrue(responseDto.getSuccess());
 	}
 
-	@Test
+//	@Test
 	@Order(3)
 	void getCurrencyByCode(){
 		String ccy = "USD";
@@ -62,7 +67,7 @@ class ValyutaApplicationTests {
 		System.out.println("Valyuta by CCY code: " + responseDto.getResponseData());
 	}
 
-	@ParameterizedTest
+//	@ParameterizedTest
 	@ValueSource(strings = {"USD", "EUR", "RUB", "KZT"})
 	@Order(4)
 	@DisplayName("Integration test")

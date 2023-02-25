@@ -20,6 +20,11 @@ public class RestCBUCurrency {
         return currencyService.insertIntoCurrency();
     }
 
+    @PostMapping("save")
+    public ResponseDto<CurrencyDto> save(@RequestBody CurrencyDto currencyDto){
+        return currencyService.save(currencyDto);
+    }
+
     @GetMapping("/by-param")
     public ResponseDto<Page<CurrencyDto>> getAllByParams(@RequestParam  Integer page, @RequestParam Integer size){
         return currencyService.getAllByParams(page, size);

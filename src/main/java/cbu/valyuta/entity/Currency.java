@@ -19,6 +19,7 @@ public class Currency {
     @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "currency_id_seq")
     @SequenceGenerator(name = "currency_id_seq", sequenceName = "currency_id_seq", allocationSize = 1)
     private Integer id;
+    @Column(name = "code")
     public String code;
     public String ccy;
     @Column(name = "ccy_nm_ru")

@@ -134,4 +134,13 @@ public class CurrencyServiceImpl implements CurrencyService {
                     .build();
         }
     }
+
+    @Override
+    public ResponseDto<CurrencyDto> save(CurrencyDto currencyDto) {
+        log.debug("Request to create currency with param: {}", currencyDto);
+        Currency currency = mapper.toEntity(currencyDto);
+        log.debug("Successfully saved currency: {}", currency);
+        return new ResponseDto<>(0, "SAVED", true, mapper.toDto(repository.save(currency)));
+    }
+
 }

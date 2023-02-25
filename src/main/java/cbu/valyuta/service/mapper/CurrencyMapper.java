@@ -6,8 +6,8 @@ import org.mapstruct.Mapping;
 
 @Mapper(componentModel = "spring")
 public interface CurrencyMapper {
-    @Mapping(target = "date",source = "date", dateFormat = "dd.MM.yyyy HH:mm:ss")  // target -> entity, source -> dto
+    @Mapping(target = "date",source = "date", dateFormat = "dd.MM.yyyy")  // target -> entity, source -> dto
     Currency toEntity(CurrencyDto currencyDto);
-    @Mapping(target = "date",source = "date", dateFormat = "dd.MM.yyyy HH:mm:ss")
+    @Mapping(target = "date",source = "date", dateFormat = "dd.MM.yyyy")
     CurrencyDto toDto(Currency currency);
 }

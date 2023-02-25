@@ -11,4 +11,6 @@ public interface CurrencyService {
     ResponseDto<Page<CurrencyDto>> getAllByParams(Integer page, Integer size);
     ResponseDto<CurrencyDto> getByCodeCurrency(String ccy);
     ResponseDto<List<CurrencyDto>> getAll();
+
+    ResponseDto<CurrencyDto> save(CurrencyDto currencyDto);
 }
