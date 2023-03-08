@@ -2,6 +2,7 @@ package cbu.valyuta.controller;
 
 import cbu.valyuta.dto.CurrencyDto;
 import cbu.valyuta.dto.ResponseDto;
+import cbu.valyuta.entity.QCurrency;
 import cbu.valyuta.service.CurrencyService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
